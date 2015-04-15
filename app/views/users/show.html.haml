@@ -1,0 +1,31 @@
+- provide(:title, full_title(user.username))
+= include_gon
+%div.row
+  %div.col-md-3
+    %h4
+      Total States:
+      = "#{@marathon_records.state_total.count}"
+    %h4
+      50 State Progress:
+      = "#{@marathon_records.state_total.uniq.count} / 50"
+    %h4
+      Average Time:
+      = @marathon_records.average_time
+    %h4
+      Personal Record:
+      = @marathon_records.personal_record
+    %h4
+      Average Pace:
+      = @marathon_records.average_pace
+  %div.col-md-6.center
+    %div#vmap.map
+  %div.col-md-3.center
+    - if user != current_user
+      = form_tag do
+        %h4
+          = check_box_tag :matching_states
+          = label_tag :highlight_matching_states, "Highlight Matching States"
+%div#marathons= render partial: 'marathons'
+%div
+  = link_to "Add a New Marathon!", new_user_marathon_path(current_user),
+    "data-no-turbolink" => true if current_user == user

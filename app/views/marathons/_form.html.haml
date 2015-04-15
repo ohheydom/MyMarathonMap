@@ -1,0 +1,29 @@
+%div.form-group
+  %table.table-centered
+    = form_for(@marathon, url: {action: action } ) do |x|
+      = render 'shared/error_messages'
+      %tr
+        %td= x.label :state_id
+        %td= x.select :state_id, options_from_collection_for_select(@states, :id, :state_name, @selected_state)
+      %tr 
+        %td= x.label :city
+        %td= x.text_field :city, class: "form-control"
+      %tr
+        %td= x.label :date
+        %td= x.date_select :date_of_marathon, {start_year: 1980, order: [:month, :day, :year] }
+      %tr  
+        %td= x.label :time
+        %td
+          = x.select :hour, options_for_select( (0..24).to_a.map(&:to_s).map(&@add_zero_lambda), time[0])
+          = x.select :minute, options_for_select( (0..59).to_a.map(&:to_s).map(&@add_zero_lambda), time[1])
+          = x.select :seconds, options_for_select( (0..59).to_a.map(&:to_s).map(&@add_zero_lambda), time[2])
+      %tr  
+        %td
+        %td= x.submit "Save", class: 'btn btn-default'
+    %tr
+      %td
+      %td
+        - if action == 'update'
+          %div
+            = form_for(@marathon, url: { action: 'destroy' }, method: :delete) do |r|
+              = r.submit "Remove", class: 'btn btn-default', data: { confirm: 'Are you sure?' }

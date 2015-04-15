@@ -1,0 +1,11 @@
+%table.table
+  %th= sorter 'date_of_marathon', 'Date'
+  %th= sorter 'state_name', 'State'
+  %th= sorter 'city'
+  %th= sorter 'time'
+  - @marathon_records.states.each do |marathon|
+    %tr
+      %td= marathon[:date_of_marathon]
+      %td= edit_marathon_link(user, marathon)
+      %td= marathon[:city]
+      %td= hours_minutes_seconds(marathon[:time])

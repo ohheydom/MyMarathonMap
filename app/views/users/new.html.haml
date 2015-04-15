@@ -1,0 +1,23 @@
+- provide(:title, "Sign Up")
+%div.row
+  %div.col-md-6.col-md-offset-3
+    %h2.center Sign Up
+    %div.form-group
+      = form_for(@user) do |x|
+        = render 'shared/error_messages'
+        %table.table-centered
+          %tr
+            %td= x.label :username
+            %td= x.text_field :username, id: 'sign_up_username', class: "form-control"
+          %tr
+            %td= x.label :email
+            %td= x.text_field :email, id: 'sign_up_email', class: "form-control"
+          %tr
+            %td= x.label :password
+            %td= x.password_field :password, id: 'sign_up_password', class: "form-control"
+          %tr
+            %td= x.label :password_confirmation, "Password Confirmation"
+            %td= x.password_field :password_confirmation, id: 'sign_up_password_confirmation', class: "form-control"
+          %tr
+            %td
+            %td.center= x.submit "Create my account!", class: 'btn btn-default'
