@@ -14,6 +14,7 @@ gem 'jquery-modal-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
+gem 'minitest'
 
 group :development, :test do
   gem 'rspec-rails'
