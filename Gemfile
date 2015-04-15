@@ -8,8 +8,18 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'haml-rails'
+gem 'gon'
+gem 'jquery-modal-rails'
+gem 'font-awesome-rails'
+gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
