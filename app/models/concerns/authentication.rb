@@ -5,7 +5,7 @@ module Authentication
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
     before_create :create_remember_token
-    before_save { self.email.downcase! }
+    before_save { email.downcase! }
     has_secure_password
 
     validates :username, :email, uniqueness: { case_sensitive: false }

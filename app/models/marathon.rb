@@ -6,9 +6,9 @@ class Marathon < ActiveRecord::Base
 
   def convert_time_to_seconds
     secs = 0
-    secs += @hour.to_i * 3600
-    secs += @minute.to_i * 60
-    secs += @seconds.to_i
+    secs += hour.to_i * 3600
+    secs += minute.to_i * 60
+    secs += seconds.to_i
     self.time = secs
   end
 end

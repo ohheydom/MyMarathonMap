@@ -1,6 +1,5 @@
 class MarathonsController < ApplicationController
   before_action :signed_in_user, :correct_user
-  before_action :add_zero_lambda, only: [:new, :edit]
   before_action :states, only: [:new, :edit]
 
   def create
@@ -15,16 +14,11 @@ class MarathonsController < ApplicationController
   end
 
   def new
-    @user = user
-    @marathon = current_user.marathons.new
-    @selected_state = state_id(params[:state] ? params[:state].downcase : 'al')
+    @new_marathon = NewMarathon.new(user, params)
   end
 
   def edit
-    @user = user
-    @marathon = current_user.marathons.find(params[:id])
-    @selected_state = state_id(@marathon.state.state.downcase)
-    @time = TimeConverter.new(@marathon.time).seconds_to_s.split(':').map(&@add_zero_lambda)
+    @new_marathon = NewMarathon.new(user, params)
   end
 
   def update
@@ -44,17 +38,6 @@ class MarathonsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_path }
     end
-  end
-
-  def state_id(state)
-    states = %w(al ak az ar ca co ct de fl ga hi id il in ia ks ky
-                la me md ma mi mn ms mo mt ne nv nh nj nm ny nc nd
-                oh ok or pa ri sc sd tn tx ut vt va wa wv wi wy)
-    (states.find_index(state) ? states.find_index(state) : 0) + 1
-  end
-
-  def add_zero_lambda
-    @add_zero_lambda = ->(s) { s.rjust(2, '0') }
   end
 
   def states

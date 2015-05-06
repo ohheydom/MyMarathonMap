@@ -1,10 +1,17 @@
 %div.form-group
   %table.table-centered
-    = form_for(@marathon, url: {action: action } ) do |x|
-      = render 'shared/error_messages'
+    = form_for(@new_marathon.marathon, url: {action: action } ) do |x|
+      - if @new_marathon.current_user.errors.any?
+        %div.error_explanation
+          %div.alert.alert-error
+            The form contains
+            = pluralize(@new_marathon.current_user.errors.count, "error")
+          %ul
+            - @new_marathon.current_user.errors.full_messages.each do |message|
+              %li= message
       %tr
         %td= x.label :state_id
-        %td= x.select :state_id, options_from_collection_for_select(@states, :id, :state_name, @selected_state)
+        %td= x.select :state_id, options_from_collection_for_select(@states, :id, :state_name, @new_marathon.selected_state)
       %tr 
         %td= x.label :city
         %td= x.text_field :city, class: "form-control"
@@ -14,9 +21,9 @@
       %tr  
         %td= x.label :time
         %td
-          = x.select :hour, options_for_select( (0..24).to_a.map(&:to_s).map(&@add_zero_lambda), time[0])
-          = x.select :minute, options_for_select( (0..59).to_a.map(&:to_s).map(&@add_zero_lambda), time[1])
-          = x.select :seconds, options_for_select( (0..59).to_a.map(&:to_s).map(&@add_zero_lambda), time[2])
+          = x.select :hour, options_for_select( (0..24).to_a.map(&:to_s).map(&add_zero_lambda), @new_marathon.time[0])
+          = x.select :minute, options_for_select( (0..59).to_a.map(&:to_s).map(&add_zero_lambda), @new_marathon.time[1])
+          = x.select :seconds, options_for_select( (0..59).to_a.map(&:to_s).map(&add_zero_lambda), @new_marathon.time[2])
       %tr  
         %td
         %td= x.submit "Save", class: 'btn btn-default'
@@ -25,5 +32,5 @@
       %td
         - if action == 'update'
           %div
-            = form_for(@marathon, url: { action: 'destroy' }, method: :delete) do |r|
+            = form_for(@new_marathon.marathon, url: { action: 'destroy' }, method: :delete) do |r|
               = r.submit "Remove", class: 'btn btn-default', data: { confirm: 'Are you sure?' }

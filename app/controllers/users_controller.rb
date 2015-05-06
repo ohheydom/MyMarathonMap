@@ -55,9 +55,8 @@ class UsersController < ApplicationController
 
   def gon_states(marathon_records)
     gon.states = marathon_records.state_total
-    if current_user != user
-      current_user_states = current_user.marathons.includes(:state).map(&:state).map(&:state).uniq.map(&:downcase)
-      gon.states_matching = marathon_records.state_total & current_user_states
-    end
+    return if current_user == user
+    current_user_states = current_user.marathons.includes(:state).map(&:state).map(&:state).uniq.map(&:downcase)
+    gon.states_matching = marathon_records.state_total & current_user_states
   end
 end
