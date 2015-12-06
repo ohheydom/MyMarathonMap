@@ -2,4 +2,4 @@
 %div.row
   %div.col-md-6.col-md-offset-3
     %h2.center Add Marathon
-    = render 'form', action: 'create'
+    = render 'form', action: 'create', new_marathon: @new_marathon, states: @states
