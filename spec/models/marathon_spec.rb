@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Marathon do
   let(:marathon) { FactoryGirl.create(:marathon) }
