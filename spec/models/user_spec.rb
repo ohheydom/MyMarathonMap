@@ -4,12 +4,12 @@ describe User do
   let(:user) { FactoryGirl.create(:user) }
   subject { user }
 
-  it { should respond_to :username }
-  it { should respond_to :email }
-  it { should respond_to :remember_token }
-  it { should respond_to :authenticate }
-  it { should have_many :marathons }
-  it { should have_many :states }
+  it { is_expected.to respond_to :username }
+  it { is_expected.to respond_to :email }
+  it { is_expected.to respond_to :remember_token }
+  it { is_expected.to respond_to :authenticate }
+  it { is_expected.to have_many :marathons }
+  it { is_expected.to have_many :states }
 
   describe 'when emails are the same' do
     before do
@@ -29,6 +29,9 @@ describe User do
     end
     before { @user.save }
 
-    its(:remember_token) { should_not be_blank }
+    describe '#remember_token' do
+      subject { super().remember_token }
+      it { is_expected.not_to be_blank }
+    end
   end
 end

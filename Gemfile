@@ -18,7 +18,7 @@ gem 'minitest'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 3.0'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'byebug'

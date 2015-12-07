@@ -12,17 +12,17 @@ describe 'Static Pages' do
         visit root_path
       end
 
-      it { should have_title(user.username) }
+      it { is_expected.to have_title(user.username) }
     end
 
-    it { should have_title('My Marathon Map') }
-    it { should have_link('What is this?', href: help_path) }
-    it { should have_link('Sign Up', href: signup_path) }
-    it { should have_button('Sign In') }
+    it { is_expected.to have_title('My Marathon Map') }
+    it { is_expected.to have_link('What is this?', href: help_path) }
+    it { is_expected.to have_link('Sign Up', href: signup_path) }
+    it { is_expected.to have_button('Sign In') }
   end
 
   describe 'Help' do
     before { visit help_path }
-    it { should have_title('Help') }
+    it { is_expected.to have_title('Help') }
   end
 end

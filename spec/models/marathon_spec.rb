@@ -4,9 +4,9 @@ describe Marathon do
   let(:marathon) { FactoryGirl.create(:marathon) }
   subject { marathon }
 
-  it { should belong_to :state }
-  it { should belong_to :user }
-  it { should respond_to :time }
-  it { should respond_to :city }
-  it { should respond_to :date_of_marathon }
+  it { is_expected.to belong_to :state }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to respond_to :time }
+  it { is_expected.to respond_to :city }
+  it { is_expected.to respond_to :date_of_marathon }
 end

@@ -33,15 +33,15 @@ describe 'User Pages' do
       end
     end
 
-    it { should have_title('Sign Up') }
-    it { should have_selector('h2', 'Sign Up') }
+    it { is_expected.to have_title('Sign Up') }
+    it { is_expected.to have_selector('h2', 'Sign Up') }
   end
 
   describe 'Sign In' do
     before { visit signin_path }
 
-    it { should have_link('Sign Up now!', href: signup_path) }
-    it { should have_content('Not a User, Sign Up now!') }
+    it { is_expected.to have_link('Sign Up now!', href: signup_path) }
+    it { is_expected.to have_content('Not a User, Sign Up now!') }
   end
 
   describe 'Edit' do
@@ -55,13 +55,13 @@ describe 'User Pages' do
       end
 
       describe 'Page' do
-        it { should have_title('Edit User') }
-        it { should have_content('Edit Settings') }
+        it { is_expected.to have_title('Edit User') }
+        it { is_expected.to have_content('Edit Settings') }
       end
 
       describe 'with invalid information' do
         before { click_button 'Save Settings' }
-        it { should have_css('.alert.alert-notice') }
+        it { is_expected.to have_css('.alert.alert-notice') }
       end
     end
 
@@ -71,8 +71,8 @@ describe 'User Pages' do
         visit edit_user_path(user)
       end
 
-      it { should_not have_title('Edit User') }
-      it { should have_title(wrong_user.username) }
+      it { is_expected.not_to have_title('Edit User') }
+      it { is_expected.to have_title(wrong_user.username) }
     end
   end
 
@@ -87,31 +87,31 @@ describe 'User Pages' do
 
     describe "User's Page" do
       describe 'Statistics' do
-        it { should have_content('Average Time') }
-        it { should have_content('50 State Progress') }
-        it { should have_content('Personal Record') }
-        it { should have_content('Total States') }
-        it { should have_content('Average Pace') }
+        it { is_expected.to have_content('Average Time') }
+        it { is_expected.to have_content('50 State Progress') }
+        it { is_expected.to have_content('Personal Record') }
+        it { is_expected.to have_content('Total States') }
+        it { is_expected.to have_content('Average Pace') }
       end
 
-      it { should have_title(user.username) }
-      it { should have_link('Add a New Marathon!', href: new_user_marathon_path(user)) }
-      it { should_not have_selector('#matching_states') }
-      it { should have_selector('table tr') }
-      it { should have_selector('table th', text: 'Date') }
-      it { should have_selector('table th', text: 'State') }
-      it { should have_selector('table th', text: 'City') }
-      it { should have_selector('table th', text: 'Time') }
-      it { should have_link('Alabama', href: edit_user_marathon_path(user, 1)) }
+      it { is_expected.to have_title(user.username) }
+      it { is_expected.to have_link('Add a New Marathon!', href: new_user_marathon_path(user)) }
+      it { is_expected.not_to have_selector('#matching_states') }
+      it { is_expected.to have_selector('table tr') }
+      it { is_expected.to have_selector('table th', text: 'Date') }
+      it { is_expected.to have_selector('table th', text: 'State') }
+      it { is_expected.to have_selector('table th', text: 'City') }
+      it { is_expected.to have_selector('table th', text: 'Time') }
+      it { is_expected.to have_link('Alabama', href: edit_user_marathon_path(user, 1)) }
     end
 
     describe "Other User's Page" do
       before do
         visit user_path other_user
       end
-      it { should have_title(other_user.username) }
-      it { should have_selector('#matching_states') }
-      it { should_not have_link('Add a New Marathon!', href: new_user_marathon_path(other_user)) }
+      it { is_expected.to have_title(other_user.username) }
+      it { is_expected.to have_selector('#matching_states') }
+      it { is_expected.not_to have_link('Add a New Marathon!', href: new_user_marathon_path(other_user)) }
     end
   end
 end

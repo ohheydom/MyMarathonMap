@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         sign_in @user
         format.html { redirect_to @user, notice: "Welcome #{@user.username}" }
       else
-        format.html { render action: 'new' }
+        format.html { render :new }
       end
     end
   end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         if user.update(user_params)
           format.html { redirect_to @user, notice: 'Your settings have been updated' }
         else
-          format.html { render action: 'edit' }
+          format.html { render :edit }
         end
       end
     else

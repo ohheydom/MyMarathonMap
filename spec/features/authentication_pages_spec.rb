@@ -12,21 +12,21 @@ describe 'Authentication' do
         sign_in user
       end
 
-      it { should have_title(user.username) }
-      it { should have_link('Profile', href: user_path(user)) }
-      it { should have_link('Sign Out', href: signout_path) }
-      it { should_not have_link('Sign In', href: signin_path) }
+      it { is_expected.to have_title(user.username) }
+      it { is_expected.to have_link('Profile', href: user_path(user)) }
+      it { is_expected.to have_link('Sign Out', href: signout_path) }
+      it { is_expected.not_to have_link('Sign In', href: signin_path) }
     end
 
     describe 'with invalid information' do
       before { click_button 'sign_in_sign_in' }
 
-      it { should have_title('Sign In') }
-      it { should have_selector('div.alert.alert-error') }
+      it { is_expected.to have_title('Sign In') }
+      it { is_expected.to have_selector('div.alert.alert-error') }
     end
 
-    it { should have_title('Sign In') }
-    it { should have_content('Sign In') }
+    it { is_expected.to have_title('Sign In') }
+    it { is_expected.to have_content('Sign In') }
   end
 
   describe 'Authorization' do

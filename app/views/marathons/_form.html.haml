@@ -12,13 +12,13 @@
       %tr
         %td= x.label :state_id
         %td= x.select :state_id, options_from_collection_for_select(states, :id, :state_name, new_marathon.selected_state)
-      %tr 
+      %tr
         %td= x.label :city
         %td= x.text_field :city, class: "form-control"
       %tr
         %td= x.label :date
         %td= x.date_select :date_of_marathon, {start_year: 1980, order: [:month, :day, :year] }
-      %tr  
+      %tr
         %td= x.label :time
         %td
           = x.select :hour, options_for_select( (0..24).to_a.map(&:to_s).map(&add_zero_lambda), new_marathon.time[0])

@@ -9,8 +9,8 @@ describe 'Marathon Pages' do
       visit new_user_marathon_path(user)
     end
 
-    it { should have_title('Add Marathon') }
-    it { should have_select('marathon_state_id', with_options: ['Alaska', 'New Jersey', 'California']) }
+    it { is_expected.to have_title('Add Marathon') }
+    it { is_expected.to have_select('marathon_state_id', with_options: ['Alaska', 'New Jersey', 'California']) }
   end
 
   describe 'Edit' do
@@ -21,9 +21,9 @@ describe 'Marathon Pages' do
       visit edit_user_marathon_path(user.id, marathon)
     end
 
-    it { should have_title('Edit Marathon') }
-    it { should have_content('Edit Marathon') }
-    it { should have_button('Remove') }
+    it { is_expected.to have_title('Edit Marathon') }
+    it { is_expected.to have_content('Edit Marathon') }
+    it { is_expected.to have_button('Remove') }
 
     describe 'delete button' do
       it 'deletes the marathon' do

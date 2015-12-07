@@ -27,7 +27,7 @@ class MarathonsController < ApplicationController
       if @marathon.update(marathon_params)
         format.html { redirect_to root_path, notice: 'Marathon was succesfully edited.' }
       else
-        format.html { render action: 'edit' }
+        format.html { render :edit }
       end
     end
   end
