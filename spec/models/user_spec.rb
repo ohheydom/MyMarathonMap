@@ -9,7 +9,6 @@ describe User do
   it { is_expected.to respond_to :remember_token }
   it { is_expected.to respond_to :authenticate }
   it { is_expected.to have_many :marathons }
-  it { is_expected.to have_many :states }
 
   describe 'when emails are the same' do
     before do

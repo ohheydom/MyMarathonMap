@@ -9,7 +9,7 @@ class Sorter
   end
 
   def column
-    allowed_column_names.include?(@column) ? @column : 'state_name'
+    allowed_column_names.include?(@column) ? @column : 'state_id'
   end
 
   def sort_string
@@ -19,6 +19,6 @@ class Sorter
   private
 
   def allowed_column_names
-    @_allowed_column_names ||= Marathon.column_names + State.column_names
+    @_allowed_column_names ||= Marathon.column_names
   end
 end

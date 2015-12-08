@@ -1,9 +1,9 @@
 module UsersHelper
   def edit_marathon_link(user, marathon)
     if user == current_user
-      link_to marathon.state[:state_name], edit_user_marathon_path(current_user, marathon), 'data-no-turbolink' => true
+      link_to States.all.select { |a, b| b == marathon.state_id }[0][0], edit_user_marathon_path(current_user, marathon), 'data-no-turbolink' => true
     else
-      marathon.state[:state_name]
+      States.all.select { |a, b| b == marathon.state_id }[0][0]
     end
   end
 

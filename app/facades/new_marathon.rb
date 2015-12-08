@@ -13,7 +13,7 @@ class NewMarathon
   end
 
   def selected_state
-    return state_id(marathon.state.state.downcase) if @params.key?(:id)
+    return state_id(States.all.select { |a, b| b == marathon.state_id }.first[2].downcase) if @params.key?(:id)
     state_id(@params[:state] ? @params[:state].downcase : 'al')
   end
 

@@ -7,11 +7,11 @@ class MarathonRecords
   end
 
   def states
-    @states ||= user.marathons.includes(:state).joins(:state).order(sorter.sort_string)
+    @states ||= user.marathons.order(sorter.sort_string)
   end
 
   def state_total
-    states.pluck(:state).map(&:downcase)
+    states.pluck(:state_id).uniq.collect { |id| States.all.select { |state| state[1] == id }.first[2] }
   end
 
   def average_time

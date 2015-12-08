@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415164608) do
+ActiveRecord::Schema.define(version: 20151208163430) do
 
   create_table "marathons", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,13 +24,6 @@ ActiveRecord::Schema.define(version: 20150415164608) do
   end
 
   add_index "marathons", ["user_id", "state_id"], name: "index_marathons_on_user_id_and_state_id"
-
-  create_table "states", force: :cascade do |t|
-    t.string   "state"
-    t.string   "state_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

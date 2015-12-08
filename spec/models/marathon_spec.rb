@@ -4,7 +4,6 @@ describe Marathon do
   let(:marathon) { FactoryGirl.create(:marathon) }
   subject { marathon }
 
-  it { is_expected.to belong_to :state }
   it { is_expected.to belong_to :user }
   it { is_expected.to respond_to :time }
   it { is_expected.to respond_to :city }

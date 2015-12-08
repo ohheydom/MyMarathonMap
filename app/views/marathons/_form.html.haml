@@ -11,7 +11,7 @@
               %li= message
       %tr
         %td= x.label :state_id
-        %td= x.select :state_id, options_from_collection_for_select(states, :id, :state_name, new_marathon.selected_state)
+        %td= x.select :state_id, options_for_select(states, selected: new_marathon.selected_state)
       %tr
         %td= x.label :city
         %td= x.text_field :city, class: "form-control"
@@ -24,7 +24,7 @@
           = x.select :hour, options_for_select( (0..24).to_a.map(&:to_s).map(&add_zero_lambda), new_marathon.time[0])
           = x.select :minute, options_for_select( (0..59).to_a.map(&:to_s).map(&add_zero_lambda), new_marathon.time[1])
           = x.select :seconds, options_for_select( (0..59).to_a.map(&:to_s).map(&add_zero_lambda), new_marathon.time[2])
-      %tr  
+      %tr
         %td
         %td= x.submit "Save", class: 'btn btn-default'
     %tr

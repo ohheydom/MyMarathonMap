@@ -41,7 +41,7 @@ class MarathonsController < ApplicationController
   end
 
   def states
-    @states = State.all
+    @states = States.all.map { |x| x[0,2] }
   end
 
   private

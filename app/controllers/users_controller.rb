@@ -56,7 +56,9 @@ class UsersController < ApplicationController
   def gon_states(marathon_records)
     gon.states = marathon_records.state_total
     return if current_user == user
-    current_user_states = current_user.marathons.includes(:state).map(&:state).map(&:state).uniq.map(&:downcase)
-    gon.states_matching = marathon_records.state_total & current_user_states
+    current_user_states = current_user.marathons.pluck(:state_id).uniq.collect do |id|
+      States.all.select { |state| state[1] == id }.first[2]
+    end.map(&:downcase)
+    gon.states_matching = gon.states & current_user_states
   end
 end

@@ -15,9 +15,3 @@ bundle install
 ```
 rake db:migrate
 ```
-
-To run tests, you can seed the state data into the test database with
-
-```
-rake db:test:populate
-```
